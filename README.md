@@ -1,8 +1,8 @@
 # Dissecting Image Crops
 
-This is the official repository for B. Van Hoorick and C. Vondrick, "Dissecting Image Crops," *arXiv preprint arXiv:2011.11831*, 2020.
+This is the official repository for:
 
-[Link to paper on ArXiv](https://arxiv.org/pdf/2011.11831.pdf)
+[B. Van Hoorick and C. Vondrick, "Dissecting Image Crops," *arXiv preprint arXiv:2011.11831*, 2020.](https://arxiv.org/pdf/2011.11831.pdf)
 
 ![](NewArch_v5.png)
 
