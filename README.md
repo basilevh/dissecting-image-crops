@@ -1,12 +1,13 @@
 # Dissecting Image Crops
 
-This is the official repository for:
+This is the official repository for B. Van Hoorick and C. Vondrick, "Dissecting Image Crops," *arXiv preprint arXiv:2011.11831*, 2020.
+In short, we investigate what traces are left behind by visual cropping, in order to determine when and how we can detect cropped images.
 
-[B. Van Hoorick and C. Vondrick, "Dissecting Image Crops," *arXiv preprint arXiv:2011.11831*, 2020.](https://arxiv.org/pdf/2011.11831.pdf)
+[Link to paper on ArXiv](https://arxiv.org/pdf/2011.11831.pdf)
 
 ![](NewArch_v5.png)
 
-## Minimal Usage Instructions
+## Very Minimal Usage Instructions
 
 Step 1: Populate `data/train`, `data/val`, and `data/test` with high-resolution image files.
 
@@ -16,7 +17,7 @@ Step 3: Run `python test.py --model_path /path/to/above/checkpoint/folder`.
 
 ## Known Issues
 
-* There is a stubborn memory leak that builds up as you train over many epochs. I have tried many things but have no idea how to prevent it.
+There is a stubborn memory leak that builds up as you train over many epochs. I have tried many things but have no idea how to prevent it.
 
 ## BibTeX Citation
 
