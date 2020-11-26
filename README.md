@@ -9,7 +9,7 @@ In short, we investigate what traces are left behind by visual cropping.
 
 ## Very Minimal Usage Instructions
 
-Step 1: Populate `data/train`, `data/val`, and `data/test` with high-resolution image files.
+Step 1: Populate `data/train`, `data/val`, and `data/test` with high-resolution image files; a constant aspect ratio is strongly preferred.
 
 Step 2: Run `python train.py`.
 
