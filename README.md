@@ -1,7 +1,7 @@
 # Dissecting Image Crops
 
 This is the official repository for B. Van Hoorick and C. Vondrick, "Dissecting Image Crops," *arXiv preprint arXiv:2011.11831*, 2020.
-In short, we investigate what traces are left behind by visual cropping, in order to determine when and how we can detect cropped images.
+In short, we investigate what traces are left behind by visual cropping.
 
 [Link to paper on ArXiv](https://arxiv.org/pdf/2011.11831.pdf)
 
