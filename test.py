@@ -58,6 +58,18 @@ _DEFAULT_RESULT_DIR = r'results/'
 _DEFAULT_BATCH_SIZE = 8
 
 
+# https://stackoverflow.com/questions/15008758/parsing-boolean-values-with-argparse
+def str2bool(v):
+    if isinstance(v, bool):
+        return v
+    if v.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
+
+
 # Process arguments.
 parser = argparse.ArgumentParser()
 
@@ -77,7 +89,7 @@ parser.add_argument('--batch_size', default=_DEFAULT_BATCH_SIZE, type=int,
                     help='Mini-batch size (default: 8)')
 parser.add_argument('--gpus', nargs='+', default=[],
                     type=int, help='GPU IDs to use (default: all)')
-parser.add_argument('--store_detailed', default=False, type=bool,
+parser.add_argument('--store_detailed', default=False, type=str2bool,
                     help='If True, store all partial input batches, model outputs, and loss information.')
 parser.add_argument('--num_workers', default=0, type=int,
                     help='Number of PyTorch data loader multiprocessing workers (default: 0)')
@@ -98,7 +110,7 @@ parser.add_argument('--aspect_ratio', default=_DEFAULT_ASPECT_RATIO, type=float,
 parser.add_argument('--grid_size', nargs='+', default=_DEFAULT_GRID_SIZE, type=int,
                     help='Uniformly sized grid cell counts for patch location classification '
                     '(width x height) (default: 4 x 4).')
-parser.add_argument('--add_coordinates_global', default=True, type=bool,
+parser.add_argument('--add_coordinates_global', default=True, type=str2bool,
                     help='If True, add fractional (x, y) coordinates to input global images to '
                     'encourage semantic features to be linked to their position.')
 
@@ -107,21 +119,21 @@ parser.add_argument('--lambda_patch', default=_DEFAULT_LAMBDA_PATCH, type=float,
                     help='Weight for patch localization loss term (default: 0.15).')
 parser.add_argument('--lambda_rect', default=_DEFAULT_LAMBDA_RECT, type=float,
                     help='Weight for crop rectangle regression loss term (default: 3.0).')
-parser.add_argument('--mix_patch_batch', default=True, type=bool,
+parser.add_argument('--mix_patch_batch', default=True, type=str2bool,
                     help='If True, mix patch location labels within a batch by using cyclic shifts '
                     'to counter the peculiar batch norm / memory effect during train mode.')
 
 # Options that can be toggled independently (to some extent) of training configuration.
-parser.add_argument('--random_patch_positions', default=True, type=bool,
+parser.add_argument('--random_patch_positions', default=True, type=str2bool,
                     help='If True, select patches from uniformly random locations within sub-grid cells instead of picking the exact center.')
-parser.add_argument('--disable_patch_jitter', default=False, type=bool,
+parser.add_argument('--disable_patch_jitter', default=False, type=str2bool,
                     help='If True, do not randomly jitter extracted patch positions by +/-8 pixels.')
 parser.add_argument('--size_factor_range', nargs='+', default=_DEFAULT_SIZE_FACTOR_RANGE, type=int,
                     help='Image crop factor range (default: 0.5 to 0.9).')
-parser.add_argument('--patch_localization_only', default=False, type=bool,
+parser.add_argument('--patch_localization_only', default=False, type=str2bool,
                     help='If True, test absolute patch localization network only, '
                     'ignoring globals and the rectangle and classification heads.')
-parser.add_argument('--post_crop_random_resize', default=True, type=bool,
+parser.add_argument('--post_crop_random_resize', default=True, type=str2bool,
                     help='If True, resize all images to random but sufficiently large dimensions '
                     'just BEFORE extracting patches as well, to simulate lack of size knowledge '
                     'at test time.')
@@ -135,7 +147,7 @@ parser.add_argument('--blue_chroma_aber', default=0.0, type=float,
                     help='Percentage of outward blue transversal chromatic aberration to simulate (default: 0.0).')
 parser.add_argument('--vignetting_strength', default=0.0, type=float,
                     help='Fraction of lens vignetting to simulate (1 = maximal) (default: 0.0).')
-parser.add_argument('--grayscale', default=False, type=bool,
+parser.add_argument('--grayscale', default=False, type=str2bool,
                     help='If True, ignore saturation and convert all images to grayscale by copying the green channel.')
 parser.add_argument('--color_saturation', default=1.0, type=float,
                     help='Color saturation factor (> 1 is exaggerated, < 1 is reduced) (default: 1.0).')
@@ -145,7 +157,7 @@ parser.add_argument('--radial_distortion', default=0.0, type=float,
 # Novel options.
 parser.add_argument('--load_dir_fraction', default=1.0, type=float,
                     help='If < 1.0, load a subset of the dataset only for faster evaluation.')
-parser.add_argument('--ignore_if_exist', default=False, type=bool,
+parser.add_argument('--ignore_if_exist', default=False, type=str2bool,
                     help='If True, do not repeat a test whose results already exist.')
 
 

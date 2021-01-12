@@ -64,6 +64,18 @@ _DEFAULT_IMAGE_DIR = r'images/'  # Unused.
 _DEFAULT_BATCH_SIZE = 8
 
 
+# https://stackoverflow.com/questions/15008758/parsing-boolean-values-with-argparse
+def str2bool(v):
+    if isinstance(v, bool):
+        return v
+    if v.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
+
+
 # Process arguments.
 parser = argparse.ArgumentParser()
 
@@ -117,19 +129,19 @@ parser.add_argument('--patch_dim', default=_DEFAULT_PATCH_DIM, type=int,
                     help='Patch image size (height and width) (default: 96).')
 parser.add_argument('--aspect_ratio', default=_DEFAULT_ASPECT_RATIO, type=float,
                     help='Typical ratio of width to height (default: 1.5).')
-parser.add_argument('--random_patch_positions', default=False, type=bool,
+parser.add_argument('--random_patch_positions', default=False, type=str2bool,
                     help='If True, select patches from uniformly random locations within sub-grid cells instead of picking the exact center.')
-parser.add_argument('--disable_patch_jitter', default=False, type=bool,
+parser.add_argument('--disable_patch_jitter', default=False, type=str2bool,
                     help='If True, do not randomly jitter extracted patch positions by +/-8 pixels.')
 parser.add_argument('--size_factor_range', nargs='+', default=_DEFAULT_SIZE_FACTOR_RANGE, type=int,
                     help='Image crop factor range (default: 0.5 to 0.9).')
 parser.add_argument('--grid_size', nargs='+', default=_DEFAULT_GRID_SIZE, type=int,
                     help='Uniformly sized grid cell counts for patch location classification '
                     '(width x height) (default: 4 x 4).')
-parser.add_argument('--add_coordinates_global', default=True, type=bool,
+parser.add_argument('--add_coordinates_global', default=True, type=str2bool,
                     help='If True, add fractional (x, y) coordinates to input global images to '
                     'encourage semantic features to be linked to their position.')
-parser.add_argument('--post_crop_random_resize', default=True, type=bool,
+parser.add_argument('--post_crop_random_resize', default=True, type=str2bool,
                     help='If True, resize all images to random but sufficiently large dimensions '
                     'just BEFORE extracting patches as well, to simulate lack of size knowledge '
                     'at test time.')
@@ -139,10 +151,10 @@ parser.add_argument('--lambda_patch', default=_DEFAULT_LAMBDA_PATCH, type=float,
                     help='Weight for patch localization loss term (default: 0.15).')
 parser.add_argument('--lambda_rect', default=_DEFAULT_LAMBDA_RECT, type=float,
                     help='Weight for crop rectangle regression loss term (default: 3.0).')
-parser.add_argument('--patch_localization_only', default=False, type=bool,
+parser.add_argument('--patch_localization_only', default=False, type=str2bool,
                     help='If True, train absolute patch localization network only, '
                     'ignoring globals and the rectangle and classification heads.')
-parser.add_argument('--mix_patch_batch', default=True, type=bool,
+parser.add_argument('--mix_patch_batch', default=True, type=str2bool,
                     help='If True, mix patch location labels within a batch by using cyclic shifts '
                     'to counter the peculiar batch norm / memory effect during train mode.')
 
