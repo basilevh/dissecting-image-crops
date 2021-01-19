@@ -17,7 +17,7 @@ Step 3: Run `python test.py --model_path /path/to/above/checkpoint/folder` with 
 
 ## Dataset
 
-In our project, we scraped [Flickr](https://www.flickr.com/explore) based on [this script](https://github.com/antiboredom/flickr-scrape) by Sam Lavigne, using each line in `google-10000-english-no-swears.txt` (see [this repository](https://github.com/first20hours/google-10000-english) for more info) as search queries. We filtered the photos by an aspect ratio of 1.5, which is the most common value, resulting in a dataset of around 700,000 images.
+In our project, we scraped [Flickr](https://www.flickr.com/explore) based on [this script](https://github.com/antiboredom/flickr-scrape) by Sam Lavigne, using each line in `google-10000-english-no-swears.txt` (see [this repository](https://github.com/first20hours/google-10000-english) for more info) as search queries. We filtered the photos by an aspect ratio of 1.5, which is the most common value, resulting in a dataset of around 700,000 images. They were captured by diverse (but mostly high-end) camera brands, models, and pipelines.
 
 ## Known Issues
 
