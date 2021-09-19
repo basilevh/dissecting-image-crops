@@ -1,6 +1,6 @@
 # Dissecting Image Crops
 
-This is the official repository for B. Van Hoorick and C. Vondrick, "Dissecting Image Crops," *arXiv preprint arXiv:2011.11831*, 2020.
+This is the official repository for B. Van Hoorick and C. Vondrick, "Dissecting Image Crops," _ICCV 2021_.
 In short, we investigate what traces are left behind by visual cropping.
 
 [Link to paper on ArXiv](https://arxiv.org/pdf/2011.11831.pdf)
@@ -29,6 +29,6 @@ There is a stubborn memory leak that builds up as you train over many epochs. I 
     @article{van2020dissecting,
         title={Dissecting Image Crops},
         author={Van Hoorick, Basile and Vondrick, Carl},
-        journal={arXiv preprint arXiv:2011.11831},
+        journal={ICCV 2021},
         year={2020}
     }
